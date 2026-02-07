@@ -247,8 +247,8 @@ export function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className={`lg:hidden absolute ${isScrolled ? 'top-24' : 'top-16'} left-0 right-0 bg-card border-t border-border shadow-lg ${isScrolled ? 'rounded-b-lg' : ''} animate-slide-up`}>
-            <div className="container px-4 py-4 flex flex-col gap-2">
+          <div className={`lg:hidden ${isScrolled ? 'fixed' : 'absolute'} ${isScrolled ? 'top-24 left-4 right-4' : 'top-16 left-0 right-0'} bg-card border border-border shadow-lg ${isScrolled ? 'rounded-lg' : 'rounded-b-none'} animate-slide-up`}>
+            <div className="px-4 py-4 flex flex-col gap-2">
               <Link 
                 to="/trips" 
                 className={`py-3 px-4 rounded-lg hover:bg-muted ${defaultText} font-medium ${isActive('/trips') ? 'text-primary font-semibold' : ''}`}
