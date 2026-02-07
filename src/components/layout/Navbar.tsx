@@ -140,10 +140,11 @@ export function Navbar() {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50`}> 
-      <div className={`transition-all duration-500 ease-in-out ${isScrolled ? 'mx-4 my-4 backdrop-blur-md bg-card/60 border-b border-border/10 shadow-lg rounded-xl' : (isHome ? 'bg-transparent rounded-none' : 'bg-card/95 backdrop-blur-md border-b border-border rounded-none')}`}> 
-        <div className="container mx-auto px-4">
-          <nav className="flex items-center justify-between h-16 lg:h-20 px-4">
+    <>
+      <header className={`fixed top-0 left-0 right-0 z-50`}> 
+        <div className={`transition-all duration-500 ease-in-out ${isScrolled ? 'mx-4 my-4 backdrop-blur-md bg-card/60 border-b border-border/10 shadow-lg rounded-xl' : (isHome ? 'bg-transparent rounded-none' : 'bg-card/95 backdrop-blur-md border-b border-border rounded-none')}`}> 
+          <div className="container mx-auto px-4">
+            <nav className="flex items-center justify-between h-16 lg:h-20 px-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img src={logo} alt="ShubhSafar Logo" width={64} height={64} className="h-16 w-auto" />
@@ -244,10 +245,13 @@ export function Navbar() {
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </nav>
+        </div>
+      </div>
+    </header>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className={`lg:hidden ${isScrolled ? 'fixed' : 'absolute'} ${isScrolled ? 'top-24 left-4 right-4' : 'top-16 left-0 right-0'} bg-card border border-border shadow-lg ${isScrolled ? 'rounded-lg' : 'rounded-b-none'} animate-slide-up`}>
+    {/* Mobile Menu - Outside header for proper positioning */}
+    {isOpen && (
+      <div className={`lg:hidden fixed z-40 ${isScrolled ? 'top-28 left-4 right-4 w-auto' : 'top-16 left-0 right-0 w-full'} bg-card border border-border shadow-lg ${isScrolled ? 'rounded-lg' : 'rounded-none'} animate-slide-up`}>
             <div className="px-4 py-4 flex flex-col gap-2">
               <Link 
                 to="/trips" 
@@ -304,8 +308,6 @@ export function Navbar() {
             </div>
           </div>
         )}
-        </div>
-      </div>
-    </header>
+    </>
   );
 }
