@@ -47,6 +47,8 @@ export function Navbar() {
   const visibleOnBg = isScrolled || !isHome;
   const defaultText = visibleOnBg ? 'text-foreground' : 'text-background';
   const mutedText = visibleOnBg ? 'text-muted-foreground' : 'text-background/90';
+  // Mobile menu links should be black when sticky on home page
+  const mobileMenuLinkColor = (isHome && isScrolled) ? 'text-foreground' : defaultText;
   const [user, setUser] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -255,21 +257,21 @@ export function Navbar() {
             <div className="px-4 py-4 flex flex-col gap-2">
               <Link 
                 to="/trips" 
-                className={`py-3 px-4 rounded-lg hover:bg-muted ${defaultText} font-medium ${isActive('/trips') ? 'text-primary font-semibold' : ''}`}
+                className={`py-3 px-4 rounded-lg hover:bg-muted ${mobileMenuLinkColor} font-medium ${isActive('/trips') ? 'text-primary font-semibold' : ''}`}
                 onClick={() => setIsOpen(false)}
               >
                 Explore Trips
               </Link>
               <Link 
                 to="/educational" 
-                className={`py-3 px-4 rounded-lg hover:bg-muted ${defaultText} font-medium ${isActive('/educational') ? 'text-primary font-semibold' : ''}`}
+                className={`py-3 px-4 rounded-lg hover:bg-muted ${mobileMenuLinkColor} font-medium ${isActive('/educational') ? 'text-primary font-semibold' : ''}`}
                 onClick={() => setIsOpen(false)}
               >
                 Educational Trips
               </Link>
               <Link 
                 to="/organizer" 
-                className={`py-3 px-4 rounded-lg hover:bg-muted ${defaultText} font-medium ${isActive('/organizer') ? 'text-primary font-semibold' : ''}`}
+                className={`py-3 px-4 rounded-lg hover:bg-muted ${mobileMenuLinkColor} font-medium ${isActive('/organizer') ? 'text-primary font-semibold' : ''}`}
                 onClick={() => setIsOpen(false)}
               >
                 Become an Organizer
@@ -277,20 +279,20 @@ export function Navbar() {
               <div className="border-t border-border my-2" />
               {!loading && user ? (
                 <>
-                  <div className={`py-3 px-4 ${defaultText} font-medium flex items-center gap-2`}>
+                  <div className={`py-3 px-4 ${mobileMenuLinkColor} font-medium flex items-center gap-2`}>
                     <User className="w-4 h-4" />
                     {user.name}
                   </div>
                   <Link 
                     to={getDashboardLink()} 
-                    className="py-3 px-4 rounded-lg hover:bg-muted text-foreground font-medium"
+                    className={`py-3 px-4 rounded-lg hover:bg-muted ${mobileMenuLinkColor} font-medium`}
                     onClick={() => setIsOpen(false)}
                   >
                     Dashboard
                   </Link>
                   <button 
                     onClick={() => { handleLogout(); setIsOpen(false); }}
-                    className="py-3 px-4 rounded-lg hover:bg-muted text-destructive font-medium text-left"
+                    className={`py-3 px-4 rounded-lg hover:bg-muted text-destructive font-medium text-left ${isHome && isScrolled ? 'text-destructive' : ''}`}
                   >
                     Logout
                   </button>
