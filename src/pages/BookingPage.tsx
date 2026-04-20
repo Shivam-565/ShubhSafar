@@ -246,7 +246,7 @@ export default function BookingPage() {
   const totalAmount = trip.price * seats;
   const savings = trip.originalPrice ? (trip.originalPrice - trip.price) * seats : 0;
 
-  const whatsappNumber = "8118825200";
+  const whatsappNumber = "9864946043";
   const whatsappUrl = `https://wa.me/91${whatsappNumber}?text=${encodeURIComponent(
     `Hi! I have paid for ${trip.title}.\n\nName: ${formData.name}\nPhone: ${formData.phone}\nTrip: ${trip.title}\nAmount: ₹${totalAmount}`
   )}`;
